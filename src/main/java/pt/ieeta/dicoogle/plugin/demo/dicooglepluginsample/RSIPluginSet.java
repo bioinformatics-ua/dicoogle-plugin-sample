@@ -27,6 +27,7 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
     List<IndexerInterface> RSIIndexerList;
     List<QueryInterface> RSIQueryList;
     List<ServerResource> RSIwebservices;
+    List<JettyPluginInterface> RSIJettyWebServices;
     
     /* if you need to handle storage, you also should add it here */
     
@@ -38,9 +39,11 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
         RSIIndexerList = new ArrayList<>();
         RSIQueryList = new ArrayList<>();
         RSIwebservices = new ArrayList<>();
+        RSIJettyWebServices = new ArrayList<>();
         
         RSIwebservices.add(new RSIWebService());
         RSIIndexerList.add(new RSIIndex(memoryDicomDB));
+        RSIJettyWebServices.add(new RSIJettyPlugin());
         
         /* More plugins should be added here */ 
         
@@ -75,7 +78,7 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
 
     @Override
     public List<JettyPluginInterface> getJettyPlugins() {
-        return new ArrayList() ;
+        return RSIJettyWebServices;
     }
 
     @Override

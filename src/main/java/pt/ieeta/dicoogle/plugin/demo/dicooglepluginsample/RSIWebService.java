@@ -26,6 +26,6 @@ public class RSIWebService  extends ServerResource  {
     // You can handle all crud operations. Please, read the restlet documentation
     
     @Override
-    public String toString(){return "rsitest";}
+    public String toString(){return "rsidemo";}
 
 }

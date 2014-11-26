@@ -42,7 +42,10 @@ public class RSIIndex implements IndexerInterface{
             DicomObject dicomObject = dicomStream.readDicomObject();
             
             String SOPInstanceUID = dicomObject.getString(Tag.SOPInstanceUID);
+            String PatientName = dicomObject.getString(Tag.PatientName);
             System.err.println("SOP Instance UID: "+SOPInstanceUID);
+            System.err.println("PatientName: "+PatientName);
+
         
         }
         catch(Exception e )
