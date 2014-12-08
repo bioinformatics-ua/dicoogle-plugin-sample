@@ -58,7 +58,7 @@ public class RSIIndex implements IndexerInterface{
         }
             
         // Do whatever you want
-        System.out.println("Size: "+ storage.getSize());
+        // System.out.println("Size: "+ storage.getSize()); // Works with new SDK (1.0)
         return new Report();
     }
     
@@ -99,7 +99,7 @@ public class RSIIndex implements IndexerInterface{
 
     @Override
     public Task<Report> index(final Iterable<StorageInputStream> files) {
-        
+        g
         return new Task<>(
                 new ProgressCallable<Report>() {
                     private float progress = 0.0f;
