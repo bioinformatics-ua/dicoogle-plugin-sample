@@ -49,11 +49,16 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
         
         System.err.println("Completed Init of RSI Plugin Set");
     }
-    
+    public static DicooglePlatformInterface coreDicoogle;
     @Override
     public void setPlatformProxy(DicooglePlatformInterface core) {
         // You can acess the core. It may be useful to do interaction between 
         // other external plugins. 
+        
+        coreDicoogle = core;
+        
+        
+        
     }
     
     
@@ -93,7 +98,7 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
 
     @Override
     public void setSettings(ConfigurationHolder xmlSettings) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
