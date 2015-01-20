@@ -21,7 +21,7 @@ Other plugins (only structure is available)
 - RSIQuery
 
 
-Webservice plugin sample
+Web service plugin sample and Web App: 
 --------------------------
 
 To test the webservice plugin, you should go to Services and Enable Dicoogle Web Services.
