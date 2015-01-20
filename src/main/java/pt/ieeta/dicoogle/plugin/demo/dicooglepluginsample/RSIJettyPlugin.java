@@ -7,9 +7,13 @@
 package pt.ieeta.dicoogle.plugin.demo.dicooglepluginsample;
 
 
+import java.io.File;
+import java.net.URL;
 import org.eclipse.jetty.server.handler.HandlerList;
+import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
+import org.eclipse.jetty.webapp.WebAppContext;
 
 import pt.ua.dicoogle.sdk.JettyPluginInterface;
 import pt.ua.dicoogle.sdk.core.DicooglePlatformInterface;
@@ -67,16 +71,40 @@ public class RSIJettyPlugin implements JettyPluginInterface, PlatformCommunicato
 		return settings;
 	}
 
+        
+        private String getJarFolder() {
+            // get name and path
+            String name = getClass().getName().replace('.', '/');
+            name = getClass().getResource("/" + name + ".class").toString();
+            // remove junk
+            name = name.substring(0, name.indexOf("!"));
+            //name = name.substring(name.lastIndexOf(':')-1, name.lastIndexOf('/')+1).replace('%', ' ');
+            // remove escape characters
+            String s = "";
+            for (int k=0; k<name.length(); k++) {
+              s += name.charAt(k);
+              if (name.charAt(k) == ' ') k += 2;
+            }
+            // replace '/' with system separator char
+            return s.replace('/', File.separatorChar) + "!";
+          }
+        
 	public HandlerList getJettyHandlers() {
-		// TODO Auto-generated method stub
 		
 		ServletContextHandler handler = new ServletContextHandler();
 		handler.setContextPath("/sample");
 		handler.addServlet(new ServletHolder(new RSIJettyWebService()), "/hello");
+                
+                final WebAppContext webpages = new WebAppContext(getJarFolder() + "/WEBAPP/", "/dashboardSample");
+                webpages.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "true"); // disables directory listing
+                webpages.setInitParameter("useFileMappedBuffer", "false");
+                webpages.setInitParameter("cacheControl", "max-age=0, public");
 
-		
+                webpages.setWelcomeFiles(new String[]{"index.html"});
+                
 		HandlerList l = new HandlerList();
 		l.addHandler(handler);
+                l.addHandler(webpages);
 		
 		return l;
 	}

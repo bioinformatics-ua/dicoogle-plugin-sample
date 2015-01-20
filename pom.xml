@@ -6,6 +6,13 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <build>
+        
+          <resources>
+                <resource>
+                  <directory>src/main/java/pt/ieeta/dicoogle/plugin/demo/dicooglepluginsample/html5/</directory>
+                </resource>
+        </resources>
+        
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -95,6 +102,13 @@
             <artifactId>dicoogle-sdk</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        
+        
+        <dependency>
+			<groupId>org.eclipse.jetty</groupId>
+			<artifactId>jetty-webapp</artifactId>
+			<version>9.0.3.v20130506</version>
+		</dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
