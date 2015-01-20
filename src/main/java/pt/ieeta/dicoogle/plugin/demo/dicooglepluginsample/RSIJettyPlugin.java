@@ -68,33 +68,20 @@ public class RSIJettyPlugin implements JettyPluginInterface, PlatformCommunicato
         return settings;
     }
 
-    private String getJarFolder() {
-        
-        String name = getClass().getName().replace('.', '/');
-        name = getClass().getResource("/" + name + ".class").toString();
-        name = name.substring(0, name.indexOf("!"));
-        
-        String s = "";
-        for (int k = 0; k < name.length(); k++) {
-            s += name.charAt(k);
-            if (name.charAt(k) == ' ') {
-                k += 2;
-            }
-        }
-        return s.replace('/', File.separatorChar) + "!";
-    }
 
     public HandlerList getJettyHandlers() {
 
         ServletContextHandler handler = new ServletContextHandler();
         handler.setContextPath("/sample");
         handler.addServlet(new ServletHolder(new RSIJettyWebService()), "/hello");
-
+        
         /* TODO: Change here if you want 
          * For deploymennt stage you can point for a directory in your machine,
         * such as: file:///Users/bastiao/myHtml5Files
          * */
-        String directoryToServeAssets = getJarFolder() + "/WEBAPP/";
+        URL url = RSIJettyPlugin.class.getResource("/WEBAPP");
+        System.out.println(url);
+        String directoryToServeAssets = url.toString();
         
         final WebAppContext webpages = new WebAppContext(directoryToServeAssets, "/dashboardSample");
         webpages.setInitParameter("org.eclipse.jetty.servlet.Default.dirAllowed", "true"); // disables directory listing
