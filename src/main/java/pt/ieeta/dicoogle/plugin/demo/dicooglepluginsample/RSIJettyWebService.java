@@ -54,8 +54,12 @@ public class RSIJettyWebService  extends HttpServlet {
         extraFields.put("StudyInstanceUID", "StudyInstanceUID");
         extraFields.put("Thumbnail", "Thumbnail");
         extraFields.put("SOPInstanceUID", "SOPInstanceUID");
+        
 
-        Task<Iterable<SearchResult>> result = RSIPluginSet.coreDicoogle.query("lucene", "StudyInstanceUID:234567", extraFields);
+        // Kind of filtering: 
+        //Task<Iterable<SearchResult>> result = RSIPluginSet.coreDicoogle.query("lucene", "StudyInstanceUID:234567", extraFields);
+        // Return all: 
+        Task<Iterable<SearchResult>> result = RSIPluginSet.coreDicoogle.query("lucene", "*:*", extraFields);
         try {
             Iterable<SearchResult> rr = result.get();
             

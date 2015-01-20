@@ -98,7 +98,7 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
 
     @Override
     public void setSettings(ConfigurationHolder xmlSettings) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
