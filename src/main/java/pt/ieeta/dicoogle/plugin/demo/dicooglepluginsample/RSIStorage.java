@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pt.ieeta.dicoogle.plugin.demo.dicooglepluginsample;
 
 import java.io.IOException;
@@ -13,36 +7,98 @@ import org.dcm4che2.io.DicomInputStream;
 import pt.ua.dicoogle.sdk.StorageInputStream;
 import pt.ua.dicoogle.sdk.StorageInterface;
 import pt.ua.dicoogle.sdk.settings.ConfigurationHolder;
+import java.io.*;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.dcm4che2.io.DicomOutputStream;
 
 /**
  *
  * @author Luís A. Bastião Silva - <bastiao@ua.pt>
  */
 public class RSIStorage implements StorageInterface {
-
+    Map<String, ByteArrayOutputStream> mem = new HashMap<String, ByteArrayOutputStream>();
+    
     @Override
     public String getScheme() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "mem://";
     }
 
     @Override
     public boolean handles(URI location) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (location.toString().contains("mem://"))
+            return true;
+        return false;
     }
 
     @Override
-    public Iterable<StorageInputStream> at(URI location) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Iterable<StorageInputStream> at(final URI location) {
+        Iterable<StorageInputStream> c = new Iterable<StorageInputStream>() {
+
+            @Override
+            public Iterator<StorageInputStream> iterator() {
+                Collection c2 = new ArrayList<StorageInputStream>();
+                StorageInputStream s = new StorageInputStream() {
+
+                    @Override
+                    public URI getURI() {
+                        return location;
+                    }
+
+                    @Override
+                    public InputStream getInputStream() throws IOException {
+                        ByteArrayOutputStream bos = mem.get(location);
+                        ByteArrayInputStream bin = new ByteArrayInputStream(bos.toByteArray());
+                        return bin;
+                    }
+
+                    @Override
+                    public long getSize() throws IOException {
+                        return 0 ;
+                    }
+                };
+                c2.add(s);
+                return c2.iterator();
+            }
+        };
+        return c;
     }
 
     @Override
     public URI store(DicomObject dicomObject) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
+        DicomOutputStream dos = new DicomOutputStream(bos);
+        try {
+            dos.writeDicomFile(dicomObject);
+        } catch (IOException ex) {
+            Logger.getLogger(RSIStorage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        bos.toByteArray();
+        URI uri = null;
+        try {
+            uri = new URI("mem://" + UUID.randomUUID().toString());
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(RSIStorage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        mem.put(uri.toString(), bos);
+        
+        
+        return uri;
     }
 
     @Override
     public URI store(DicomInputStream inputStream) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        DicomObject obj = inputStream.readDicomObject();
+
+        return store(obj);
     }
 
     @Override
@@ -52,22 +108,22 @@ public class RSIStorage implements StorageInterface {
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return "memoryStorage";
     }
 
     @Override
     public boolean enable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
     public boolean disable() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return true;
     }
 
     @Override
