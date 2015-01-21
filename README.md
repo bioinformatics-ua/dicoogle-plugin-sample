@@ -32,12 +32,11 @@ You can compile and run in the command line:
 Available plugins
 -----------------------
 - RSIIndex
+- RSIStorage
+- RSIQuery
 - RSIWebService
 - RSIJettyPlugin
 - Sample HTML5 content and consuming web service: helps to build a web app
-- RSIStorage
-- RSIQuery
-
 
 Web service plugin sample and Web App: 
 --------------------------
