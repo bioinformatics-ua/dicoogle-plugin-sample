@@ -9,13 +9,17 @@ import java.util.List;
  */
 public class MemoryDICOMDB {
     
+    private List<String> patientNames = null;
+    private List<String> studies = null;
+    private List<String> series = null;
     private List<String> sopInstanceUIDs = null;
+    
     public MemoryDICOMDB ()
     {
         sopInstanceUIDs = new ArrayList<>();
     }
     
-    public void add(String sop)
+    public void add(String patient, String study, String serie, String sop)
     {
         sopInstanceUIDs.add(sop);
     }

@@ -14,9 +14,6 @@ Available plugins
 - RSIWebService
 - RSIJettyPlugin
 - Sample HTML5 content and consuming web service: helps to build a web app
-
-Other plugins (only structure is available)
----------------------
 - RSIStorage
 - RSIQuery
 

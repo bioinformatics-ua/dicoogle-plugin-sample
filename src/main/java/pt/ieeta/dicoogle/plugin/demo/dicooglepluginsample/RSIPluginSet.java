@@ -24,6 +24,7 @@ import pt.ua.dicoogle.sdk.settings.ConfigurationHolder;
 @PluginImplementation
 public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
     
+    List<StorageInterface> RSIStorageList;
     List<IndexerInterface> RSIIndexerList;
     List<QueryInterface> RSIQueryList;
     List<ServerResource> RSIwebservices;
@@ -37,6 +38,7 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
         System.err.println("Initializing RSI Plugin Set");
         
         RSIIndexerList = new ArrayList<>();
+        RSIStorageList = new ArrayList<>();
         RSIQueryList = new ArrayList<>();
         RSIwebservices = new ArrayList<>();
         RSIJettyWebServices = new ArrayList<>();
@@ -44,6 +46,9 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
         RSIwebservices.add(new RSIWebService());
         RSIIndexerList.add(new RSIIndex(memoryDicomDB));
         RSIJettyWebServices.add(new RSIJettyPlugin());
+        RSIQueryList.add(new RSIQuery(memoryDicomDB));
+        RSIStorageList.add(new RSIStorage());
+        
         
         /* More plugins should be added here */ 
         
@@ -93,7 +98,7 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
 
     @Override
     public Collection<StorageInterface> getStoragePlugins() {
-        return new ArrayList() ;
+        return RSIStorageList ;
     }
 
     @Override
