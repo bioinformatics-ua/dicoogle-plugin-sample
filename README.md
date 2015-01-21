@@ -57,5 +57,7 @@ Platforms
 - Linux
 - Mac OS X
 
+More information: http://bioinformatics-ua.github.io/dicoogle/
+
 
 
