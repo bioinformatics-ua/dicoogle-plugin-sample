@@ -47,7 +47,8 @@ To test the webservice plugin, you should go to Services and Enable Dicoogle Web
 - http://127.0.0.1:8080/sample/hello?uid=1111
 - http://127.0.0.1:8080/dashboardSample
 - http://127.0.0.1:6060/rsitest (restlet)
-- 
+
+
 
 Platforms
 ----------------
