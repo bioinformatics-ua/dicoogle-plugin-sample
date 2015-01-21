@@ -13,9 +13,6 @@ Available plugins
 - RSIIndex
 - RSIWebService
 - RSIJettyPlugin
-
-Other plugins (only structure is available)
----------------------
 - RSIStorage
 - RSIQuery
 
