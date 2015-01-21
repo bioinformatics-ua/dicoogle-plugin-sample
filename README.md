@@ -20,6 +20,7 @@ Use your own plugin
 You should use Netbeans to compile the project and maven is necessary. Then, the first class to look is RSIPluginSet. It is the place where the magic starts.
 
 You can compile:
+
 1. https://github.com/bioinformatics-ua/dicooglePluginSample.git
 2. cd dicooglePluginSample 
 3. ```$ mvn install```
