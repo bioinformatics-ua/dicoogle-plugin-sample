@@ -25,6 +25,8 @@ public class RSIWebService  extends ServerResource  {
     
     // You can handle all crud operations. Please, read the restlet documentation
     
+    
+    // http://localhost:8080/ext/rsidemo
     @Override
     public String toString(){return "rsidemo";}
 
