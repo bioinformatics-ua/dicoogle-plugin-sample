@@ -142,6 +142,15 @@ public class RSIIndex implements IndexerInterface{
         
     }
 
+
+    @Override
+    public boolean handles(URI uri) {
+        // Not implemented
+        return true;
+
+    }
+
+
     @Override
     public String getName() {
         return "RSIStorageTest";

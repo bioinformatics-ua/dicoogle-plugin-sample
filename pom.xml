@@ -50,57 +50,14 @@
         </plugins>
     </build>
     <repositories>
-		<repository>
-			<id>mavencentral</id>
-			<url>http://repo1.maven.org/maven2/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-		<repository>
-			<id>dcm4che</id>
-			<url>http://www.dcm4che.org/maven2/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
 
-		<repository>
-			<id>mi</id>
-			<url>http://bioinformatics.ua.pt/maven/content/repositories/mi</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>mi-snapshots</id>
-			<url>http://bioinformatics.ua.pt/maven/content/repositories/mi-snapshots</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-
-		<repository>
-			<id>sourceforge-releases</id>
-			<name>Sourceforge Releases</name>
-			<url>https://oss.sonatype.org/content/repositories/sourceforge-releases</url>
-		</repository>
-
-		<!--These are needed for Swing/Netbeans -->
-		<repository>
-			<id>maven2-repository.netbeans.maven2</id>
-			<name>Netbeans Maven Repository</name>
-			<url>http://bits.netbeans.org/maven2/</url>
-			<layout>default</layout>
-		</repository>
 	</repositories>
 
     <dependencies>
         <dependency>
-            <groupId>org.dicoogle.sdk</groupId>
+            <groupId>pt.ua.ieeta</groupId>
             <artifactId>dicoogle-sdk</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>2.0-SNAPSHOT</version>
         </dependency>
         
         
