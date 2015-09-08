@@ -44,6 +44,7 @@ public class RSIPluginSet implements PluginSet, PlatformCommunicatorInterface{
         RSIJettyWebServices = new ArrayList<>();
         
         RSIwebservices.add(new RSIWebService());
+        RSIwebservices.add(new JsonWebService());
         RSIIndexerList.add(new RSIIndex(memoryDicomDB));
         RSIJettyWebServices.add(new RSIJettyPlugin());
         RSIQueryList.add(new RSIQuery(memoryDicomDB));
