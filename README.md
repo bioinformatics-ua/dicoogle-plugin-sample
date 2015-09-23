@@ -1,62 +1,77 @@
 Dicoogle Plugin - Sample 
------------------------
+========================
 
+This is a Dicoogle plugin to serve as an example. Those that are interested in developing a new
+plugin may use this one as a template.
 
-Where should I start?
------------------------
-
-
-Run Dicoogle
+Getting Started
 ---------------
+
+### Installing and running Dicoogle
+
 1. Go to http://www.dicoogle.com/?page_id=67
-2. Download the version of Dicoogle
-3. Run the Dicoogle with: sh Dicoogle.sh or Dicoogle.bat. 
-4. Is it running? You're ok! 
+2. Download version 2 (or later) of Dicoogle
+3. Extract your contents to its own directory (e.g. "~/dicoogle" or "C:\dicoogle", depending on the platform).
+4. Run Dicoogle with: sh Dicoogle.sh (OSX / Linux) or Dicoogle.bat (Windows).
+5. You should see your web browser opening the Dicoogle user interface. Is it running? You're ok!
 
+### Downloading and building the plugin
 
-Use your own plugin
---------------------
+Maven is required in order to build the project. An IDE with Maven support such as Netbeans may also help.
 
-You should use Netbeans to compile the project and maven is necessary. Then, the first class to look is RSIPluginSet. It is the place where the magic starts.
+1. Clone the git repository at https://github.com/bioinformatics-ua/dicooglePluginSample.git
 
-You can compile and run in the command line:
+2. Go to the project's base directory in a command line and run `mvn install`. Alternatively, open
+   the Maven project of the plugin with your IDE, then force it to build your project.
 
-1. https://github.com/bioinformatics-ua/dicooglePluginSample.git
-2. cd dicooglePluginSample 
-3. ```$ mvn install```
-4. copy target/dicooglePluginRestSample-1.0-SNAPSHOT-jar-with-dependencies.jar to the folder Plugins inside Dicoogle project.
-5. Run Dicoogle with: sh Dicoogle.sh or Dicoogle.bat. 
+3. If the building task is successful, you will have a new jar with dependencies in the target
+   folder (target/dicoogle-plugin-sample-2.0-jar-with-dependencies.jar).
 
+### Developing your own plugin based on this sample
 
+The first class to look into is RSIPluginSet. It is the main entry point for everything else.
+Once modified to suit your needs, build the plugin again and re-deploy it to Dicoogle (see below).
 
-Available plugins
------------------------
-- RSIIndex
-- RSIStorage
-- RSIQuery
-- RSIWebService
-- RSIJettyPlugin
-- Sample HTML5 content and consuming web service: helps to build a web app
+### Using your plugin
+
+1. Copy your plugin's package with dependencies (target/dicoogle-plugin-sample-2.0-jar-with-dependencies.jar)
+   to the "Plugins" folder inside the root folder of Dicoogle.
+
+2. Run Dicoogle. The plugin will be automatically included.
+
+Available content
+-----------------
+
+- _RSIIndexer_ : a sample indexer, only logs the DIM contents of files
+- _RSIStorage_ : a sample storage service, keeps files in memory buffers
+- _RSIQuery_ : a sample query provider, returns random data on request
+- _RSIJettyPlugin_ : a sample plugin for providing web services, holds `RSIWebService`
+- _RSIWebService_ : a sample web service in the form of a servlet, serves a web page and a few other services
+- _RSIRestPlugin_ : a sample Restlet server resource, provides dummy data
+- Sample HTML5 content and consuming web service: helps you to build a web app
 
 Web service plugin sample and Web App: 
---------------------------
+--------------------------------------
 
-To test the webservice plugin, you should go to Services and Enable Dicoogle Web Services.
+To test the webservice plugin, you may open your browser and navigate to these URLs:
 
-- http://127.0.0.1:8080/sample/hello?uid=1111
-- http://127.0.0.1:8080/dashboardSample
-- http://127.0.0.1:6060/rsitest (restlet)
+- `http://localhost:8080/sample/hello?uid=1111`
+- `http://localhost:8080/dashboardSample`
+- `http://localhost:8080/ext/rsi-test` (restlet)
 
+You may also use the built-in Dicoogle services for testing other plugins:
 
+- GET `http://localhost:8080/search?query=test&provider=RSI` to test the query provider
+- POST `http://localhost:8080/management/tasks/index?plugin=RSI&uri=<file:/path/to/DICOM/dir>` to test the indexer
 
 Platforms
-----------------
+----------
+
+Dicoogle has been tested in:
 
 - Windows
 - Linux
 - Mac OS X
 
-More information: http://bioinformatics-ua.github.io/dicoogle/
-
-
+For more information, please visit http://www.dicoogle.com
 

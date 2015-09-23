@@ -16,39 +16,35 @@
  * You should have received a copy of the GNU General Public License
  * along with Dicoogle.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package pt.ieeta.dicoogle.plugin.demo.dicooglepluginsample;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.restlet.data.MediaType;
+import org.restlet.representation.Representation;
+import org.restlet.representation.StringRepresentation;
+import org.restlet.resource.Get;
+import org.restlet.resource.ServerResource;
 
-/** An in-memory DICOM storage.
+/** Example of a Restlet-based server resource plugin.
  *
- * @author Luís A. Bastião Silva <bastiao@ua.pt>
- * @author Eduardo Pinho <eduardopinho@ua.pt>
+ * @author Luís A. Bastião Silva - <bastiao@ua.pt>
  */
-public class MemoryDICOMDB {
+public class RSIWebResource  extends ServerResource  {
     
-    private final List<String> patientNames;
-    private final List<String> studies;
-    private final List<String> series;
-    private final List<String> sopInstanceUIDs;
-    
-    public MemoryDICOMDB ()
-    {
-        patientNames = new ArrayList<>();
-        studies = new ArrayList<>();
-        series = new ArrayList<>();
-        sopInstanceUIDs = new ArrayList<>();
+    @Get
+    public Representation test(){
+        StringRepresentation sr = new StringRepresentation("{\"name\":\"rsi\"}");
+
+        sr.setMediaType(MediaType.APPLICATION_JSON);
+
+        return sr;
     }
     
-    public void add(String patient, String study, String serie, String sop)
-    {
-        sopInstanceUIDs.add(sop);
-    }
-    public void remove(String sop)
-    {
-        sopInstanceUIDs.remove(sop);
-    }
+    // You can handle all crud operations. More information in the Restlet documentation.
     
+    @Override
+    public String toString(){
+        return "rsi-test";
+    }
 
 }
