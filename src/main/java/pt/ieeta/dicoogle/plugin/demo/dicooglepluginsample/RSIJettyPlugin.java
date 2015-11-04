@@ -1,86 +1,108 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Copyright (C) 2014  Universidade de Aveiro, DETI/IEETA, Bioinformatics Group - http://bioinformatics.ua.pt/
+ *
+ * This file is part of Dicoogle/dicoogle-plugin-sample.
+ *
+ * Dicoogle/dicoogle-plugin-sample is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Dicoogle/dicoogle-plugin-sample is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Dicoogle.  If not, see <http://www.gnu.org/licenses/>.
  */
 package pt.ieeta.dicoogle.plugin.demo.dicooglepluginsample;
 
-import java.io.File;
 import java.net.URL;
+import javax.servlet.http.HttpServlet;
 import org.eclipse.jetty.server.handler.HandlerList;
-import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import pt.ua.dicoogle.sdk.JettyPluginInterface;
 import pt.ua.dicoogle.sdk.core.DicooglePlatformInterface;
 import pt.ua.dicoogle.sdk.core.PlatformCommunicatorInterface;
 import pt.ua.dicoogle.sdk.settings.ConfigurationHolder;
 
-/**
+/** Example of a Jetty Servlet plugin.
  *
  * @author Luís A. Bastião Silva - <bastiao@ua.pt>
  */
 public class RSIJettyPlugin implements JettyPluginInterface, PlatformCommunicatorInterface {
-
+    private static final Logger logger = LoggerFactory.getLogger(RSIJettyPlugin.class);
+    
+    private boolean enabled;
     private ConfigurationHolder settings;
-    private DicooglePlatformInterface pluginController;
-
+    private DicooglePlatformInterface platform;
+    private final RSIJettyWebService webService;
+    
     public RSIJettyPlugin() {
-        super();
-        new RSIJettyWebService();
+        this.webService = new RSIJettyWebService();
+        this.enabled = true;
     }
 
+    @Override
     public void setPlatformProxy(DicooglePlatformInterface pi) {
-        this.pluginController = pi;
-        RSIJettyWebService.setPlugin(this);
-
-        System.out.println("PluginController was set:" + pi);
+        this.platform = pi;
+        // since web service is not a plugin interface, the platform interface must be provided manually
+        this.webService.setPlatformProxy(pi);
     }
 
+    @Override
     public String getName() {
-        return "RSIJetty";
+        return "RSI";
     }
 
+    @Override
     public boolean enable() {
-        // TODO Auto-generated method stub
+        this.enabled = true;
         return true;
     }
 
+    @Override
     public boolean disable() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    public boolean isEnabled() {
-        // TODO Auto-generated method stub
+        this.enabled = false;
         return true;
     }
 
-    public void setSettings(ConfigurationHolder settings) {
-        // TODO Auto-generated method stub
-        this.settings = settings;
+    @Override
+    public boolean isEnabled() {
+        return this.enabled;
     }
 
+    @Override
+    public void setSettings(ConfigurationHolder settings) {
+        this.settings = settings;
+        // use settings here
+    }
+
+    @Override
     public ConfigurationHolder getSettings() {
-        // TODO Auto-generated method stub
         return settings;
     }
 
 
+    @Override
     public HandlerList getJettyHandlers() {
 
         ServletContextHandler handler = new ServletContextHandler();
         handler.setContextPath("/sample");
-        handler.addServlet(new ServletHolder(new RSIJettyWebService()), "/hello");
+        handler.addServlet(new ServletHolder(this.webService), "/hello");
         
         /* TODO: Change here if you want 
-         * For deploymennt stage you can point for a directory in your machine,
-        * such as: file:///Users/bastiao/myHtml5Files
-         * */
+         * During the development stage you can point to a directory in your machine,
+         * such as: file:///Users/bastiao/myHtml5Files
+         */
         URL url = RSIJettyPlugin.class.getResource("/WEBAPP");
-        System.out.println(url);
+        logger.debug("Retrieving web app from \"{}\"", url);
         String directoryToServeAssets = url.toString();
         
         final WebAppContext webpages = new WebAppContext(directoryToServeAssets, "/dashboardSample");
@@ -95,10 +117,6 @@ public class RSIJettyPlugin implements JettyPluginInterface, PlatformCommunicato
         l.addHandler(webpages);
 
         return l;
-    }
-
-    public DicooglePlatformInterface getPluginController() {
-        return pluginController;
     }
 
 }
