@@ -72,7 +72,7 @@ public class RSIStorage implements StorageInterface {
     }
 
     @Override
-    public URI store(DicomObject dicomObject) {
+    public URI store(DicomObject dicomObject, Object... objects) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         DicomOutputStream dos = new DicomOutputStream(bos);
         try {
@@ -94,7 +94,7 @@ public class RSIStorage implements StorageInterface {
     }
 
     @Override
-    public URI store(DicomInputStream inputStream) throws IOException {
+    public URI store(DicomInputStream inputStream, Object... objects) throws IOException {
 
         DicomObject obj = inputStream.readDicomObject();
 

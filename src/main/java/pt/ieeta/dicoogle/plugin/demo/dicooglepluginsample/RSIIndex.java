@@ -63,7 +63,7 @@ public class RSIIndex implements IndexerInterface{
     }
     
     @Override
-    public Task<Report> index(final StorageInputStream file) {
+    public Task<Report> index(final StorageInputStream file, Object... objects) {
         
         
         return new Task<>(
@@ -98,7 +98,7 @@ public class RSIIndex implements IndexerInterface{
     }
 
     @Override
-    public Task<Report> index(final Iterable<StorageInputStream> files) {
+    public Task<Report> index(final Iterable<StorageInputStream> files, Object... objects) {
         return new Task<>(
                 new ProgressCallable<Report>() {
                     private float progress = 0.0f;
