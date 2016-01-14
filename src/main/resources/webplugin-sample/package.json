@@ -1,0 +1,34 @@
+{
+  "name": "demo",
+  "version": "0.1.0",
+  "description": "demo",
+  "files": [
+    "module.js"
+  ],
+  "scripts": {
+    "build": "webpack",
+    "build-debug": "webpack --devtool inline-source-map",
+    "prepublish": "npm run build"
+  },
+  "author": "Luís A. Bastião Silva <bastiao@bmd-software.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "bastiao/demo"
+  },
+  "keywords": [
+    "dicoogle",
+    "dicoogle-plugin"
+  ],
+  "dicoogle": {
+    "slot-id": "menu",
+    "caption": "Webplugin-Sample",
+    "module-file": "module.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.4.0",
+    "babel-loader": "^6.2.1",
+    "babel-preset-es2015": "^6.3.13",
+    "webpack": "^1.12.11"
+  }
+}
