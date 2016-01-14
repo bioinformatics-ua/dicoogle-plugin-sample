@@ -23,6 +23,15 @@
             <resource>
                 <directory>src/main/resources/html5/</directory>
             </resource>
+            <resource>
+                <directory>src/main/resources/webplugin-sample</directory>
+                <targetPath>WebPlugins/webplugin-sample</targetPath>
+                <filtering>false</filtering>
+                <includes>
+                    <include>package.json</include>
+                    <include>module.js</include>
+                </includes>
+            </resource>
         </resources>
         
         <plugins>
@@ -140,5 +149,7 @@
             <artifactId>jetty-webapp</artifactId>
             <version>${jetty.version}</version>
         </dependency>
+
+
     </dependencies>
 </project>
