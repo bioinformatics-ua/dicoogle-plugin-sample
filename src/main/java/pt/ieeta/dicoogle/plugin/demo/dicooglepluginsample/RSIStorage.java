@@ -62,7 +62,7 @@ public class RSIStorage implements StorageInterface {
     }
 
     @Override
-    public Iterable<StorageInputStream> at(final URI location) {
+    public Iterable<StorageInputStream> at(final URI location, Object... objects) {
         Iterable<StorageInputStream> c = new Iterable<StorageInputStream>() {
 
             @Override
