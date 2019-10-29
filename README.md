@@ -9,10 +9,10 @@ Getting Started
 
 ### Installing and running Dicoogle
 
-1. Go to http://www.dicoogle.com/?page_id=67
+1. Go to http://www.dicoogle.com/downloads
 2. Download version 2 (or later) of Dicoogle
 3. Extract your contents to its own directory (e.g. "~/dicoogle" or "C:\dicoogle", depending on the platform).
-4. Run Dicoogle with: sh Dicoogle.sh (OSX / Linux) or Dicoogle.bat (Windows).
+4. Run Dicoogle with: sh DicoogleClient.sh (OSX / Linux) or DicoogleClient.bat (Windows).
 5. You should see your web browser opening the Dicoogle user interface. Is it running? You're ok!
 
 ### Downloading and building the plugin
