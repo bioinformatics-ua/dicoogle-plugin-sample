@@ -26,7 +26,6 @@ import net.xeoh.plugins.base.annotations.PluginImplementation;
 import org.restlet.resource.ServerResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import pt.ua.dicoogle.sdk.GraphicalInterface;
 import pt.ua.dicoogle.sdk.IndexerInterface;
 import pt.ua.dicoogle.sdk.JettyPluginInterface;
 import pt.ua.dicoogle.sdk.PluginSet;
@@ -126,9 +125,4 @@ public class RSIPluginSet implements PluginSet {
         return this.settings;
     }
 
-    @Override
-    public Collection<GraphicalInterface> getGraphicalPlugins() {
-        // Graphical plugins are deprecated. Do not use or provide any.
-        return Collections.EMPTY_LIST;
-    }
 }
