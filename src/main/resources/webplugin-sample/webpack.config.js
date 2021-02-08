@@ -16,5 +16,5 @@ module.exports = {
       }
     ]
   },
-  externals: ['react', 'dicoogle-client', 'dicoole-webcore']
+  externals: ['react', 'dicoogle-client', 'dicoogle-webcore']
 };
