@@ -108,7 +108,7 @@ public class RSIPluginSet implements PluginSet {
 
     @Override
     public void shutdown() {
-        logger.info("Plugin sample will shutdown")
+        logger.info("Plugin sample will shutdown");
     }
 
     @Override
