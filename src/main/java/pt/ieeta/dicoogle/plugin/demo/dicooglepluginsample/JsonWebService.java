@@ -37,7 +37,7 @@ public class JsonWebService extends ServerResource  {
     
     @Get
     public Representation testJson(){
-        StringRepresentation sr = new StringRepresentation("{\"name\":\"rsi\"}");
+        StringRepresentation sr = new StringRepresentation("{\"name\":\"dicoogle-plugin-sample\"}");
 
         sr.setMediaType(MediaType.APPLICATION_JSON);
 

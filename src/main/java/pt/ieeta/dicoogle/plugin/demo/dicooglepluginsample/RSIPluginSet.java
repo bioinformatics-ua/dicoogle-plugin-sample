@@ -93,7 +93,7 @@ public class RSIPluginSet implements PluginSet {
      */
     @Override
     public String getName() {
-        return "RSI";
+        return "dicoogle-plugin-sample";
     }
 
     @Override
@@ -108,6 +108,7 @@ public class RSIPluginSet implements PluginSet {
 
     @Override
     public void shutdown() {
+        logger.info("Plugin sample will shutdown")
     }
 
     @Override
