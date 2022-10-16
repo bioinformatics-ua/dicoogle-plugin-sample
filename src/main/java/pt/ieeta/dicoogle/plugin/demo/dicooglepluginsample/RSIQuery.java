@@ -81,7 +81,7 @@ public class RSIQuery implements QueryInterface {
 
     @Override
     public String getName() {
-        return "dicoogle-plugin-sample-query";
+        return "dicoogle-plugin-sample";
     }
 
     @Override

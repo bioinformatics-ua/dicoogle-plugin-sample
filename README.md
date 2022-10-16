@@ -19,7 +19,7 @@ Getting Started
 
 Maven is required in order to build the project. An IDE with Maven support such as Netbeans may also help.
 
-1. Clone the git repository at https://github.com/bioinformatics-ua/dicooglePluginSample.git
+1. Clone the git repository at https://github.com/bioinformatics-ua/dicoogle-plugin-sample.git
 
 2. Go to the project's base directory in a command line and run `mvn install`. Alternatively, open
    the Maven project of the plugin with your IDE, then force it to build your project.
@@ -57,12 +57,12 @@ To test the webservice plugin, you may open your browser and navigate to these U
 
 - `http://localhost:8080/sample/hello?uid=1111`
 - `http://localhost:8080/dashboardSample`
-- `http://localhost:8080/ext/rsi-test` (restlet)
+- `http://localhost:8080/ext/dicoogle-test` (restlet)
 
 You may also use the built-in Dicoogle services for testing other plugins:
 
-- GET `http://localhost:8080/search?query=test&provider=RSI` to test the query provider
-- POST `http://localhost:8080/management/tasks/index?plugin=RSI&uri=<file:/path/to/DICOM/dir>` to test the indexer
+- GET `http://localhost:8080/search?query=test&provider=dicoogle-plugin-sample` to test the query provider
+- POST `http://localhost:8080/management/tasks/index?plugin=dicoogle-plugin-sample&uri=<file:/path/to/DICOM/dir>` to test the indexer
 
 Platforms
 ----------
