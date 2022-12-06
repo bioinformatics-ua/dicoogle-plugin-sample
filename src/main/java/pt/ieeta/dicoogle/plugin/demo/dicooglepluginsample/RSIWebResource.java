@@ -33,7 +33,7 @@ public class RSIWebResource  extends ServerResource  {
     
     @Get
     public Representation test(){
-        StringRepresentation sr = new StringRepresentation("{\"name\":\"rsi\"}");
+        StringRepresentation sr = new StringRepresentation("{\"name\":\"dicoogle-plugin-sample\"}");
 
         sr.setMediaType(MediaType.APPLICATION_JSON);
 
@@ -44,7 +44,7 @@ public class RSIWebResource  extends ServerResource  {
     
     @Override
     public String toString(){
-        return "rsi-test";
+        return "dicoogle-test";
     }
 
 }

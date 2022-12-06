@@ -157,7 +157,7 @@ public class RSIIndexer implements IndexerInterface{
      */
     @Override
     public String getName() {
-        return "RSI";
+        return "dicoogle-plugin-sample";
     }
 
     @Override
