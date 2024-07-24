@@ -4,14 +4,14 @@
     <groupId>pt.ua.dicoogle.demo</groupId>
     <artifactId>dicoogle-plugin-sample</artifactId>
     <name>dicoogle-plugin-sample</name>
-    <version>3.0.0</version>
+    <version>3.1.0</version>
     <packaging>jar</packaging>
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Dicoogle SDK version here -->
-        <dicoogle.version>3.2.2</dicoogle.version>
+        <dicoogle.version>3.4.1</dicoogle.version>
 
         <!-- Jetty server version here -->        
         <jetty.version>9.0.3.v20130506</jetty.version>
@@ -38,7 +38,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>3.13.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -66,9 +66,9 @@
             <plugin>
                 <groupId>com.mycila</groupId>
                 <artifactId>license-maven-plugin</artifactId>
-                <version>2.4</version>
+                <version>2.9</version>
                 <configuration>
-                    <header>./short-license.txt</header>
+                    <header>short-license.txt</header>
                     <includes>
                         <include>**/*.java</include>
                     </includes>
@@ -140,7 +140,5 @@
             <artifactId>jetty-webapp</artifactId>
             <version>${jetty.version}</version>
         </dependency>
-
-
     </dependencies>
 </project>
