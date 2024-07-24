@@ -51,7 +51,7 @@ public class RSIStorage implements StorageInterface {
     
     @Override
     public String getScheme() {
-        return "mem://";
+        return "mem";
     }
 
     @Override
