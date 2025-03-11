@@ -19,7 +19,6 @@
 
 package pt.ieeta.dicoogle.plugin.demo.dicooglepluginsample;
 
-import java.io.File;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -61,7 +60,7 @@ public class RSIQuery implements QueryInterface {
         map.put("SeriesDate","20150120");
         
         SearchResult r = new SearchResult(
-                URI.create("file:" + File.separatorChar + UUID.randomUUID().toString() ), 1, map);
+                URI.create("file://" + UUID.randomUUID().toString() ), 1, map);
         return r;
     }
     

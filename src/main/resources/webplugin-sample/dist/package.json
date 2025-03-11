@@ -1,0 +1,13 @@
+{
+  "name": "dicoogle-healthcheck",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Example web UI plugin for Dicoogle",
+  "license": "MIT",
+  "main": "module.js",
+  "dicoogle": {
+    "slot-id": "menu",
+    "caption": "Health Check",
+    "module-file": "module.js"
+  }
+}

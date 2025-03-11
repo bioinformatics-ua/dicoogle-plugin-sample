@@ -28,8 +28,7 @@ import org.dcm4che2.io.DicomInputStream;
 import pt.ua.dicoogle.sdk.StorageInputStream;
 import pt.ua.dicoogle.sdk.StorageInterface;
 import pt.ua.dicoogle.sdk.settings.ConfigurationHolder;
-import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -45,13 +44,13 @@ import org.slf4j.LoggerFactory;
 public class RSIStorage implements StorageInterface {
     private static final Logger logger = LoggerFactory.getLogger(RSIStorage.class);
 
-    private final Map<String, ByteArrayOutputStream> mem = new HashMap<>();
+    private final Map<String, byte[]> mem = new HashMap<>();
     private boolean enabled = true;
     private ConfigurationHolder settings;
     
     @Override
     public String getScheme() {
-        return "mem://";
+        return "mem";
     }
 
     @Override
@@ -67,7 +66,6 @@ public class RSIStorage implements StorageInterface {
 
             @Override
             public Iterator<StorageInputStream> iterator() {
-                Collection c2 = new ArrayList<>();
                 StorageInputStream s = new StorageInputStream() {
 
                     @Override
@@ -77,18 +75,17 @@ public class RSIStorage implements StorageInterface {
 
                     @Override
                     public InputStream getInputStream() throws IOException {
-                        ByteArrayOutputStream bos = mem.get(location.toString());
-                        ByteArrayInputStream bin = new ByteArrayInputStream(bos.toByteArray());
+                        byte[] data = mem.get(location.toString());
+                        ByteArrayInputStream bin = new ByteArrayInputStream(data);
                         return bin;
                     }
 
                     @Override
                     public long getSize() throws IOException {
-                        return mem.get(location.toString()).size();
+                        return mem.get(location.toString()).length;
                     }
                 };
-                c2.add(s);
-                return c2.iterator();
+                return Collections.singletonList(s).iterator();
             }
         };
         return c;
@@ -97,16 +94,14 @@ public class RSIStorage implements StorageInterface {
     @Override
     public URI store(DicomObject dicomObject, Object... objects) {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        DicomOutputStream dos = new DicomOutputStream(bos);
-        try {
+        try (DicomOutputStream dos = new DicomOutputStream(bos)) {
             dos.writeDicomFile(dicomObject);
         } catch (IOException ex) {
             logger.warn("Failed to store object", ex);
         }
-        bos.toByteArray();
         URI uri = URI.create("mem://" + UUID.randomUUID().toString());
-        mem.put(uri.toString(), bos);
-        
+        mem.put(uri.toString(), bos.toByteArray());
+
         return uri;
     }
 

@@ -19,7 +19,6 @@
 package pt.ieeta.dicoogle.plugin.demo.dicooglepluginsample;
 
 import java.net.URL;
-import javax.servlet.http.HttpServlet;
 import org.eclipse.jetty.server.handler.HandlerList;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
