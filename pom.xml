@@ -24,7 +24,7 @@
                 <directory>src/main/resources/html5/</directory>
             </resource>
             <resource>
-                <directory>src/main/resources/webplugin-sample</directory>
+                <directory>src/main/resources/webplugin-sample/dist</directory>
                 <targetPath>WebPlugins/webplugin-sample</targetPath>
                 <filtering>false</filtering>
                 <includes>
